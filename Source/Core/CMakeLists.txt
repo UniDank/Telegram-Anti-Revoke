@@ -42,6 +42,16 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(spdlog)
 message("Fetch 'spdlog' done.")
 
+# sigmatch
+#
+message("Fetching 'sigmatch'...")
+FetchContent_Declare(
+    sigmatch
+    GIT_REPOSITORY "https://github.com/SpriteOvO/sigmatch.git"
+    GIT_TAG "v0.1.0"
+)
+FetchContent_MakeAvailable(sigmatch)
+message("Fetch 'sigmatch' done.")
 
 ##################################################
 # Configure project
@@ -56,10 +66,11 @@ endif()
 ##################################################
 # Code files
 #
-add_library(
-    Core SHARED
 
-    "DllMain.cpp"
+set(
+    SOURCE_FILES
+
+    "Main.cpp"
     "RealMain.cpp"
     "IAntiRevoke.cpp"
     "Logger.cpp"
@@ -68,11 +79,19 @@ add_library(
     "QtString.cpp"
     "Telegram.cpp"
     "Utils.cpp"
-
-    "Assembly.asm"
-
-    "Resource.rc"
 )
+
+if (WIN32)
+    set(
+        SOURCE_FILES ${SOURCE_FILES}
+
+        "OS/Windows/DllMain.cpp"
+        "OS/Windows/DllProxy.asm"
+        "OS/Windows/Resource.rc"
+    )
+endif()
+
+add_library(Core SHARED ${SOURCE_FILES})
 
 configure_file("../Common/Config.h.in" "Config.h")
 target_include_directories(Core PRIVATE ${PROJECT_BINARY_DIR})
@@ -85,7 +104,7 @@ if (MSVC)
     # Configure for masm code file
     #
     if (TAR_PLATFORM STREQUAL "X86")
-        set_source_files_properties ("Assembly.asm" PROPERTIES COMPILE_FLAGS "/safeseh")
+        set_source_files_properties ("OS/Windows/DllProxy.asm" PROPERTIES COMPILE_FLAGS "/safeseh")
     endif()
 
     # Prevent MSBuild from adding the build configuration to the end of the binary directory for binary file output
@@ -121,4 +140,5 @@ target_link_libraries(
     nlohmann_json::nlohmann_json
     minhook
     spdlog::spdlog
+    sigmatch::sigmatch
 )

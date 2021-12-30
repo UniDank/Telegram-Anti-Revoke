@@ -1,3 +1,7 @@
+**This project is no longer maintained, please read the release notes for the last version [v0.4.4](https://github.com/SpriteOvO/Telegram-Anti-Revoke/releases/tag/0.4.4).**
+
+---
+
 # Telegram-Anti-Revoke
 
 [![](https://github.com/SpriteOvO/Telegram-Anti-Revoke/actions/workflows/windows-msvc.yml/badge.svg)](https://github.com/SpriteOvO/Telegram-Anti-Revoke/actions/workflows/windows-msvc.yml)
@@ -27,23 +31,25 @@ If you are using **Telegram beta**, please check the latest preview version.
 
 ## :hamburger: Usage
 1. Go to the [Release Page](https://github.com/SpriteOvO/Telegram-Anti-Revoke/releases) to download the latest version of the plugin.  
-2. Open Telegram and open the top-left menu. From there, note the application version and architecture \***ARCH**\* (x86 or x64) which is labelled under its version, e.g "**Version** x.x.x **x64**" (If you are under x84 it shouldn't display the architecture on the version).
+2. Open Telegram and open the top-left menu. From there, note the application version and architecture **\*ARCH\*** (`x86` or `x64`) which is labelled under the version, e.g `Version x.x.x x64` (If you are under `x84`, there is no **\*ARCH\*** displayed).
 3. Close the running Telegram process.
-4. Follow the instructions accordly to your Telegram version ([Before 2.8.5](#before-285) - [After 2.8.4](#after-284))
+4. Follow the instructions accordly to your Telegram version ([Before v2.8.5](#before-v285) - [Since v2.8.5](#since-v285))
 5. Run Telegram.
 
-### Before 2.8.5
-1. Move the file "TAR-Resources\\***ARCH**\*.dll" to the Telegram directory as `version.dll`.
+### Before v2.8.5
+1. Move the file `TAR-Resources\*ARCH*.dll` to the Telegram directory as `version.dll`.
+2. Run `Telegram.exe`.
 
-### After 2.8.4
-1. Turn off the option "Launch Telegram when system starts" in the Telegram settings.
-2. Move the file "TAR-Launcher-\***ARCH**\*.exe" and the folder "TAR-Resources" to the Telegram directory.
-3. Execute the "TAR-Launcher-\***ARCH**\*.exe" or/and set it to [start with system](#after-284---start-with-system)
+### Since v2.8.5
+1. Turn off the option `Launch Telegram when system starts` in the Telegram settings.
+2. Move the file `TAR-Launcher-*ARCH*.exe` and the folder `TAR-Resources` to the Telegram directory.
+3. You need to run `TAR-Launcher-*ARCH*.exe` to start Telegram each time.
 
-### After 2.8.4 - Start with system
-1. Copy the file "TAR-Launcher-\***ARCH**\*.exe" to your clipboard.
-2. Navigate to `shell:startup` in Explorer `Win`+`R`).
-3. Right-click (open your context menu) and "Paste shortcut" in that directory.
+### Since v2.8.5 - Start with system
+1. Copy the file `TAR-Launcher-*ARCH*.exe` to your clipboard.
+2. Navigate to `shell:startup` in Explorer (or run it in `Win`+`R`).
+3. Right-click (open the context menu) and `Paste shortcut` in that directory.
+4. Optionally to make it start minimized see the [-autostart guide](https://github.com/SpriteOvO/Telegram-Anti-Revoke/issues/65#issuecomment-890500956).
 
 ## :hammer_and_wrench: Build
 See the [Build Instructions](/Docs/Build.md).
@@ -53,13 +59,15 @@ Please use the [Issue Tracker](https://github.com/SpriteOvO/Telegram-Anti-Revoke
 To avoid duplication of issues, please check existing issues before submitting.
 
 ## :gem: ThirdParty
-* json ([MIT License](https://github.com/nlohmann/json/blob/develop/LICENSE.MIT))
-* MinHook ([BSD 2-Clause License](https://github.com/TsudaKageyu/minhook/blob/master/LICENSE.txt))
-* spdlog ([MIT License](https://github.com/gabime/spdlog/blob/v1.x/LICENSE))
+* [sigmatch](https://github.com/SpriteOvO/sigmatch) ([Apache-2.0 License](https://github.com/SpriteOvO/sigmatch/blob/main/LICENSE)) - ✨ Modern C++ 20 signature match / search library (another project of mine)
+* [json](https://github.com/nlohmann/json) ([MIT License](https://github.com/nlohmann/json/blob/develop/LICENSE.MIT))
+* [MinHook](https://github.com/TsudaKageyu/minhook) ([BSD 2-Clause License](https://github.com/TsudaKageyu/minhook/blob/master/LICENSE.txt))
+* [spdlog](https://github.com/gabime/spdlog) ([MIT License](https://github.com/gabime/spdlog/blob/v1.x/LICENSE))
 
 ## :beer: Acknowledgments
 * Thanks to *采蘑菇的小蘑菇* for providing help with compiling Telegram.
 * Thanks to *dummycatz* for pointing out the cause of cross-module `malloc` / `free` crash.
 
 ## :warning: Warning
-This open source project and plugin is unofficial and is for educational purposes only.
+* The plugin makes no warranties and any risk of use is at your own risk.
+* This open source project and plugin is unofficial and is for educational purposes only.
